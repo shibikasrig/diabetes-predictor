@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h2>Diabetes Prediction Result</h2>
+    <p><strong>Prediction:</strong> {{ prediction }}</p>
+    <p><strong>Probability:</strong> {{ probability }}</p>
+    <p><strong>Risk Level:</strong> {{ risk }}</p>
+    <h4>Health Tips:</h4>
+    <ul>
+        {% for tip in tips %}
+        <li>{{ tip }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Form</a>
+</body>
+</html>

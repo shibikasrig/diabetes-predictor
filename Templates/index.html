@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Risk Estimator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.analyticsvidhya.com/wp-content/uploads/2022/01/Diabetes-Prediction-Using-Machine-Learning.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-left: 5px solid #007BFF;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Risk Estimator</h1>
+        <form method="post">
+            <label>Pregnancies:</label>
+            <input type="number" name="Pregnancies" step="1" required>
+
+            <label>Glucose:</label>
+            <input type="number" name="Glucose" step="0.1" required>
+
+            <label>BloodPressure:</label>
+            <input type="number" name="BloodPressure" step="0.1" required>
+
+            <label>SkinThickness:</label>
+            <input type="number" name="SkinThickness" step="0.1" required>
+
+            <label>Insulin:</label>
+            <input type="number" name="Insulin" step="0.1" required>
+
+            <label>BMI:</label>
+            <input type="number" name="BMI" step="0.1" required>
+
+            <label>DiabetesPedigreeFunction:</label>
+            <input type="number" name="DiabetesPedigreeFunction" step="0.01" required>
+
+            <label>Age:</label>
+            <input type="number" name="Age" step="1" required>
+
+            <button type="submit" class="submit-btn">Predict</button>
+        </form>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if prediction %}
+            <div class="result">
+                <strong>Prediction:</strong> {{ prediction }}<br>
+                <strong>Probability:</strong> {{ probability }}<br>
+                <strong>Risk Level:</strong> {{ risk_level }}<br>
+                <strong>Personalized Advice:</strong>
+                <ul>
+                    {% for tip in advice %}
+                        <li>{{ tip }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
